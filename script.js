@@ -101,22 +101,38 @@ function renderEntities(){
     }
     updateSummary();
 }
-categorySelect.addEventListener("submit",function(e) {e.preventDefault()});
-    var category = categorySelect.value;
-    var activity = activitySelect.value;
-    var amount = parseFloat(document.getElementById("amount").value);
+if (categorySelect) {
+    categorySelect.addEventListener("change", fillActivities);
+}
+if (logform){
+    logform.addEventListener("submit", function(e){
+        e.preventDefault();
 
-    var co2PerUnit = data[category].activities[activity].co2PerUnit;
-    var co2Total = amount * co2PerUnit;
+        var category = categorySelect.value;
+        var activity = activitySelect.value;
+        var amountInput = document.getElementById("amount");
+        var amount = amountInput ? parseFloat(amountInput.value) :1;
+        if(!category || !activity || !data[category] || !data[category].activities[activity]){
+            alert("Please select a valid category and activity.");
+            return;
+        }
+        var co2PerUnit = data[category].activities[activity].co2PerUnit;
+        var co2Total = amount * co2PerUnit;
 
-    var newEntry = {
-        category: category,
-        activity: activity,
-        amount: amount,
-        date: dateInputa.value,
-        co2Total: co2Total,
-    };
-    entries.push(newEntry);
-    renderEntities();
-    document.getElementById("amount").value = 1;
-fillcategories();
+        var newEntry = {
+            category: category,
+            activity: activity,
+            amount: amount,
+            date: dateInput ? dataInput.value : new Date().toISOString().split('T')[0],
+            co2Total: co2Total,
+        };
+        entries.push(newEntry);
+        renderEntities();
+
+        if (amountInput) amountInput.value = 1;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    fillcategories();
+});
