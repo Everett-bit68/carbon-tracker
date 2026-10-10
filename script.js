@@ -99,4 +99,24 @@ function renderEntities(){
         li.textContent = `${entry.date}: ${categoryLabel}-${activitylabel} (${entry.amount} ${unit}) -> ${entry.co2Total.toFixed(2)} kgCO2`;
         activityList.appendChild(li);
     }
+    updateSummary();
 }
+categorySelect.addEventListener("submit",function(e) {e.preventDefault()});
+    var category = categorySelect.value;
+    var activity = activitySelect.value;
+    var amount = parseFloat(document.getElementById("amount").value);
+
+    var co2PerUnit = data[category].activities[activity].co2PerUnit;
+    var co2Total = amount * co2PerUnit;
+
+    var newEntry = {
+        category: category,
+        activity: activity,
+        amount: amount,
+        date: dateInputa.value,
+        co2Total: co2Total,
+    };
+    entries.push(newEntry);
+    renderEntities();
+    document.getElementById("amount").value = 1;
+fillcategories();
