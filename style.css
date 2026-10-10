@@ -1,0 +1,105 @@
+*{
+    box-sizing:border-box;
+}
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: lightgreen;
+    color: black;
+}
+header{
+    text-align: center;
+    padding:20px;
+}
+header h1 {
+    margin:0;
+    font-size: 32px;
+}
+header p{
+    margin-top: 5px;
+}
+main{
+    max-width: 600px;
+    margin: 0 auto;
+    padding:10px;
+}
+.card{
+    background-color: white;
+    border: 1px solid rgb(183, 201, 183);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.summary{
+    display:flex;
+    gap: 15px;
+}
+.summary .card{
+    flex: 1;
+    text-align: center;
+}
+.summary h2{
+    margin-top:0;
+    font-size:20px;
+}
+.big{
+    font-size: 24px;
+    font-weight: bold;
+    color: lime;
+}
+#log-form{
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 10px;
+}
+label{
+    display:block;
+    width:100%;
+    padding: 8px;
+    margin-top: 4px;
+    font-size: 16px;
+}
+select, input{
+    margin-top: 6px;
+    padding:10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s;
+}
+select:focus, input:focus{
+    border-color: lime;
+}
+button{
+    width:100%;
+    padding: 10px;
+    background-color: greenyellow;
+    border:none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top:8px;
+}
+button:hover{
+    background-color:black;
+    color: white;
+}
+#activity-list{
+    list-style-type: none;
+    padding:0;
+    margin: 0;
+}
+#activity li{
+    padding: 12px 10px;
+    border-bottom: 1px solid whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: grey;
+}
+#activity-list li:last-child{
+    border-bottom: none;
+}

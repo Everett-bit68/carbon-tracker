@@ -7,6 +7,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Carbon Footprint Tracker</h1>
+        <p>Log what you do each day and track how much C02 it adds up to.</p>
+    </header>
+    <main>
+        <section class = "summary">
+            <div class = "card">
+                <h2>Today</h2>
+                <p class="big">kg CO2</p>
+            </div>
+            <div class="card">
+                <h2>Last 7 Days</h2>
+                <p class="big">kg CO2</p>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Log an activity</h2>
+            <form id="log-form">
+                <label>
+                    Category
+                    <select id = "category"></select>
+                </label>
+                <label>
+                    Activity
+                    <select id = "activity"></select>
+                </label>
+                <label>
+                    Amount
+                    <input type="number" id="amount" min="0" step="any" value="1" required>
+                </label>
+                <label>
+                    Date
+                    <input type="date" id="date" required>
+                </label>
+                <button type="submit">Add entry</button>
+            </form>
+        </section>
+        <section class="card">
+            <h2>Activity History</h2>
+            <ul id="activity-list" style="list-style-type:none;padding:0;">
+                <p style="color: grey;">no activities logged yet</p>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
