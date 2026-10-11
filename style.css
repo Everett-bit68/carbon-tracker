@@ -100,7 +100,7 @@ button:hover{
     padding:0;
     margin: 0;
 }
-#activity li{
+#activity-list li{
     padding: 12px 10px;
     border-bottom: 1px solid whitesmoke;
     display: flex;
