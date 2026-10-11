@@ -95,6 +95,15 @@ button:hover{
     background-color:black;
     color: white;
 }
+#clear-btn{
+    background-color: red;
+    color: white;
+    margin-top: 15px;
+}
+#clear-btn #hover{
+    background-color: black;
+    color: white;
+}
 #activity-list{
     list-style-type: none;
     padding:0;

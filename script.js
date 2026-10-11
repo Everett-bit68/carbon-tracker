@@ -37,6 +37,7 @@ var dateInput= document.getElementById("date");
 var activitylist = document.getElementById("activity-list");
 var todaydisplay = document.querySelector(".summary .card:nth-child(1) .big");
 var totaldisplay = document.querySelector(".summary .card:nth-child(2) .big");
+var clearBtn = document.getElementById("clear-btn");
 
 var entries = [];
 
@@ -136,6 +137,15 @@ if (logForm){
         renderEntities();
 
         if (amountInput) amountInput.value = 1;
+    });
+}
+if (clearBtn) {
+    clearBtn.addEventListener("click", function(){
+        if (confirm("Are you sure that you want to clear all history?")){
+            entries = [];
+            localStorage.removeItem("carbonEntries");
+            renderEntities();
+        }
     });
 }
 
