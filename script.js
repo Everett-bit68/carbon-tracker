@@ -40,6 +40,11 @@ var totaldisplay = document.querySelector(".summary .card:nth-child(2) .big");
 
 var entries = [];
 
+var savedEntries = localStorage.getItem("carbonEntries");
+if (savedEntries) {
+    entries = JSON.parse(savedEntries);
+}
+
 dateInput.valueAsDate = new Date();
 
 function fillCategories(){
@@ -127,6 +132,7 @@ if (logForm){
             co2Total: co2Total,
         };
         entries.push(newEntry);
+        localStorage.setItem("carbonEntries", JSON.stringify(entries));
         renderEntities();
 
         if (amountInput) amountInput.value = 1;
@@ -135,4 +141,5 @@ if (logForm){
 
 document.addEventListener("DOMContentLoaded", function(){
     fillCategories();
+    renderEntities();
 });
