@@ -35,14 +35,14 @@ var activitySelect = document.getElementById("activity");
 var logForm = document.getElementById("log-form");
 var dateInput= document.getElementById("date");
 var activitylist = document.getElementById("activity-list");
-var todaydisplay = document.getElementById(".summary .card:nth-child(1) .big");
-var totaldisplay = document.getElementById(".summary .card:nth-child(2) .big");
+var todaydisplay = document.querySelector(".summary .card:nth-child(1) .big");
+var totaldisplay = document.querySelector(".summary .card:nth-child(2) .big");
 
 var entries = [];
 
 dateInput.valueAsDate = new Date();
 
-function fillcategories(){
+function fillCategories(){
     categorySelect.innerHTML = "";
 
     for (var key in data) {
@@ -63,13 +63,13 @@ function fillActivities(){
         for (var actKey in activities){
             var option = document.createElement("option");
             option.value = actKey;
-            option.textContent = activities[actkey].label;
+            option.textContent = activities[actKey].label;
             activitySelect.appendChild(option);
         }
     }
 }
 function updateSummary(){
-    var todayStr = new Date().toISOstring().split('T')[0];
+    var todayStr = new Date().toISOString().split('T')[0];
     var todayTotal = 0;
     var allTotal = 0;
 
@@ -96,16 +96,16 @@ function renderEntities(){
         var categoryLabel = data[entry.category].label;
         var activityLabel = data[entry.category].activities[entry.activity].label;
         var unit = data[entry.category].unit;
-        li.textContent = `${entry.date}: ${categoryLabel}-${activitylabel} (${entry.amount} ${unit}) -> ${entry.co2Total.toFixed(2)} kgCO2`;
-        activityList.appendChild(li);
+        li.textContent = `${entry.date}: ${categoryLabel}-${activityLabel} (${entry.amount} ${unit}) -> ${entry.co2Total.toFixed(2)} kgCO2`;
+        activitylist.appendChild(li);
     }
     updateSummary();
 }
 if (categorySelect) {
     categorySelect.addEventListener("change", fillActivities);
 }
-if (logform){
-    logform.addEventListener("submit", function(e){
+if (logForm){
+    logForm.addEventListener("submit", function(e){
         e.preventDefault();
 
         var category = categorySelect.value;
@@ -123,7 +123,7 @@ if (logform){
             category: category,
             activity: activity,
             amount: amount,
-            date: dateInput ? dataInput.value : new Date().toISOString().split('T')[0],
+            date: dateInput ? dateInput.value : new Date().toISOString().split('T')[0],
             co2Total: co2Total,
         };
         entries.push(newEntry);
@@ -134,5 +134,5 @@ if (logform){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    fillcategories();
+    fillCategories();
 });
