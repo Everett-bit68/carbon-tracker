@@ -107,6 +107,14 @@ function renderEntities(){
     }
     updateSummary();
 }
+function showToast(message){
+    const toast = document.getElementById("toast");
+    toast.innerText = message;
+    toast.classList.add('show');
+    setTimeout(()=>{
+        toast.classList.remove('show');
+    }, 3000);
+}
 if (categorySelect) {
     categorySelect.addEventListener("change", fillActivities);
 }
@@ -135,6 +143,7 @@ if (logForm){
         entries.push(newEntry);
         localStorage.setItem("carbonEntries", JSON.stringify(entries));
         renderEntities();
+        showToast("Logged activity successfully!")
 
         if (amountInput) amountInput.value = 1;
     });

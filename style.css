@@ -95,6 +95,10 @@ button:hover{
     background-color:black;
     color: white;
 }
+button:focus-visible, input:focus-visible, select:focus-visible{
+    outline: 3px solid greenyellow;
+    outline-offset: 2px;
+}
 #clear-btn{
     background-color: red;
     color: white;
@@ -120,4 +124,44 @@ button:hover{
 }
 #activity-list li:last-child{
     border-bottom: none;
+}
+.toast{
+    visibility: hidden;
+    min-width: 250px;
+    background-color: lightgreen;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px 16px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+.toast .show{
+    visibility: visible;
+    opacity: 1;
+    bottom: 40px;
+}
+@media (max-width: 600px) {
+    body{
+        padding: 10px;
+    }
+    .container{
+        width:100%;
+        padding: 15px;
+    }
+    .form-group{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    input, select, button{
+        width: 100%;
+        font-size: 16px;
+    }
 }
