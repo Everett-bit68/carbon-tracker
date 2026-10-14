@@ -1,3 +1,17 @@
+:root {
+    --bg-color: white;
+    --card-bg: white;
+    --text-color: navy;
+    --border-color: white;
+    --input-bg: white;
+}
+[data-theme="dark"]{
+    --bg-color: rgb(25, 25, 53);
+    --card-bg: darkblue;
+    --text-color: white;
+    --border-color: darkblue;
+    --input-bg: navy;
+}
 *{
     box-sizing:border-box;
 }
@@ -165,20 +179,7 @@ button:focus-visible, input:focus-visible, select:focus-visible{
     opacity: 1;
     bottom: 40px;
 }
-:root {
-    --bg-color: white;
-    --card-bg: white;
-    --text-color: navy;
-    --border-color: white;
-    --input-bg: white;
-}
-[data-theme="dark"]{
-    --bg-color: rgb(25, 25, 53);
-    --card-bg: darkblue;
-    --text-color: white;
-    --border-color: darkblue;
-    --input-bg: navy;
-}
+
 @media (max-width: 600px) {
     body{
         padding: 10px;
