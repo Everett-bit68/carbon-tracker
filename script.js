@@ -162,3 +162,26 @@ document.addEventListener("DOMContentLoaded", function(){
     fillCategories();
     renderEntities();
 });
+
+const themeToggleBtn = document.getElementById("theme-toggle")
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    if (themeToggleBtn) {
+        themeToggleBtn.textContent = savedTheme === "dark" ? "☀️ light mode": "🌙 dark mode";
+    }
+}
+if (themeToggleBtn){
+    themeToggleBtn.addEventListener("click",function(){
+        const currentTheme = document.getElementById.getAttritube("data-theme");
+        let newTheme = "light";
+        if (currentTheme !== "dark"){
+            newTheme = "dark";
+            themeToggleBtn.textContent = "☀️ light mode";
+        }else{
+            themeToggleBtn.textContent = "🌙 dark mode";
+        }
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme",newTheme);
+    })
+}
