@@ -1,8 +1,8 @@
 :root {
-    --bg-color: white;
+    --bg-color: grey;
     --card-bg: white;
     --text-color: navy;
-    --border-color: white;
+    --border-color: #d1d5db;
     --input-bg: white;
 }
 [data-theme="dark"]{

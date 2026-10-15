@@ -173,7 +173,7 @@ if (savedTheme) {
 }
 if (themeToggleBtn){
     themeToggleBtn.addEventListener("click",function(){
-        const currentTheme = document.getElementById.getAttribute("data-theme");
+        const currentTheme = document.documentElement.getAttribute("data-theme");
         let newTheme = "light";
         if (currentTheme !== "dark"){
             newTheme = "dark";
