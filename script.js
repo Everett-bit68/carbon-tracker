@@ -106,6 +106,30 @@ function renderEntities(){
         activitylist.appendChild(li);
     }
     updateSummary();
+    rendercustomchart();
+}
+function renderCustomChart(){
+    let totals = {
+        transport : 0,
+        energy : 0,
+        food : 0
+    };
+    for (let i=0; i< entries.length; i++){
+        let entry = entries[i];
+        if (totals[entry.category] !== undefined){
+            totals[entry.category] += entry.co2Total;
+        }
+    }
+    let maxVal = Math.max(totals.transport, totals.energy, totals.food, 10);
+    let transportHeight = (totals.transport/maxVal) * 100;
+    document.getElementById('bar-transport').style.height = transportHeight + '%';
+    document.getElementById('val-transport').textContent = totals.transport.toFixed(1) + ' kg';
+    let energyHeight = (totals.energy/maxVal) * 100;
+    document.getElementById('bar-energy').style.height = energyHeight + '%';
+    document.getElementById('val-energy').textContent = totals.energy.toFixed(1) + ' kg';
+    let foodHeight = (totals.food/maxVal) * 100;
+    document.getElementById('bar-food').style.height = foodHeight + '%';
+    document.getElementById('val-food').textContent = totals.food.toFixed(1) + ' kg';
 }
 function showToast(message){
     const toast = document.getElementById("toast");
