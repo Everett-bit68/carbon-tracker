@@ -16,6 +16,14 @@
         <p>Log what you do each day and track how much C02 it adds up to.</p>
     </header>
     <main>
+        <section class="card">
+            <h2>Emission Target</h2>
+            <label>
+                Weekly CO2 Budget(kg)
+                <input type="number" id="budget-input" value="50" min="1" step="any">
+            </label>
+            <p id="budget-status" style="margin-top: 8px; font-weight: bold; font-size: 14px;"></p>
+        </section>
         <section class = "summary">
             <div class = "card">
                 <h2>Today</h2>

@@ -106,7 +106,36 @@ function renderEntities(){
         activitylist.appendChild(li);
     }
     updateSummary();
-    rendercustomchart();
+    renderCustomChart();
+    updateBudgetCheck();
+}
+
+var budgetInput = document.getElementById("budget-input");
+var budgetStatus = document.getElementById("budget-status");
+var savedBudget = localStorage.getItem("carbonBudget");
+if (savedBudget && budgetInput){
+    budgetInput.value = savedBudget;
+}
+function updateBudgetCheck(){
+    if (!budgetInput || !budgetStatus) return;
+    var maxBudget = parseFloat(budgetInput.value) || 50;
+    var totalEmissions = 0;
+    for(var i =0; i<entries.length; i++){
+        totalEmissions += entries[i].co2Total;
+    }
+    if(totalEmissions >maxBudget){
+        budgetStatus.textContent = `⚠️ You are over budget by ${(totalEmissions - maxBudget).toFixed(1)} kg CO2`;
+        budgetStatus.style.color = "#f73232";
+    } else {
+        budgetStatus.textContent = `✅ You are within your budget! ${(maxBudget - totalEmissions).toFixed(1)} kg remaining)`;
+        budgetStatus.style.color = "#43c947";
+    }
+}
+if (budgetInput){
+    budgetInput.addEventListener("input",function(){
+        localStorage.setItem("carbonBudget", budgetInput.value);
+        updateBudgetCheck();
+    });
 }
 function renderCustomChart(){
     let totals = {
