@@ -108,6 +108,7 @@ function renderEntities(){
     updateSummary();
     renderCustomChart();
     updateBudgetCheck();
+    updatestreak();
 }
 
 var budgetInput = document.getElementById("budget-input");
@@ -116,6 +117,7 @@ var savedBudget = localStorage.getItem("carbonBudget");
 if (savedBudget && budgetInput){
     budgetInput.value = savedBudget;
 }
+updateBudgetCheck();
 function updateBudgetCheck(){
     if (!budgetInput || !budgetStatus) return;
     var maxBudget = parseFloat(budgetInput.value) || 50;
@@ -136,6 +138,41 @@ if (budgetInput){
         localStorage.setItem("carbonBudget", budgetInput.value);
         updateBudgetCheck();
     });
+}
+var streakDisplay = document.getElementById("streak-display");
+function updatestreak(){
+    if (!streakDisplay) return;
+    if (entries.length === 0){
+        streakDisplay.textContent = "0 days 🔥";
+        return;
+    }
+
+    var uniqueDates = [];
+    for (var i = 0; i<entries.length; i++){
+        var d = entries[i].date;
+        if (uniqueDates.indexOf(d)=== -1){
+            uniqueDates.push(d);
+        }
+    }
+    uniqueDates.sort().reverse();
+    var streak = 0
+    var todayStr = new Date().toISOString().split('T')[0];
+    var checkDate = new Date();
+    var checkDateStr = checkDate.toISOString().split('T')[0];
+    if (uniqueDates.indexOf(checkDateStr) === -1){
+        checkDate.setDate(checkDate.getDate() -1);
+        checkDateStr = checkDate.toISOString().split('T')[0];
+    } 
+    for (var j = 0; j< uniqueDates.length; j++){
+        var expectedDateStr = checkDate.toISOString().split('T')[0];
+        if (uniqueDates.indexOf(expectedDateStr) !== -1){
+            streak++;
+            checkDate.setDate(checkDate.getDate()-1);
+        } else {
+            break;
+        }
+    }
+    streakDisplay.textContent = streak + (streak === 1? "Day 🔥": "Days 🔥");
 }
 function renderCustomChart(){
     let totals = {
