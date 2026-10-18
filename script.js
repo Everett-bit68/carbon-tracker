@@ -38,6 +38,7 @@ var activitylist = document.getElementById("activity-list");
 var todaydisplay = document.querySelector(".summary .card:nth-child(1) .big");
 var totaldisplay = document.querySelector(".summary .card:nth-child(2) .big");
 var clearBtn = document.getElementById("clear-btn");
+var historyFilter = document.getElementById("")
 
 var entries = [];
 
@@ -90,8 +91,19 @@ function updateSummary(){
 }
 function renderEntities(){
     activitylist.innerHTML ="";
-    if (entries.length ===0){
-        activitylist.innerHTML = '<p style="color:grey;">No activities logged yet.</p>';
+    var selectedFilter = historyFilter ? historyFilter.value: "all";
+    var filteredEntries = []
+    for (var k=0; k < entries.length; k++){
+        if (selectedFilter === "all" || entries[k].category === selectedFilter){
+            filteredEntries.push({ entry: entries[k], originalIndex: k});
+        }
+    }
+    if (filteredEntries.length === 0){
+        activitylist.innerHTML = `<p style="color:grey;"> No matching activities found.<p>`;
+        updateSummary();
+        renderCustomChart();
+        updateBudgetCheck();
+        updatestreak();
         return;
     }
     for (var i =0; i<entries.length; i++){
@@ -110,7 +122,11 @@ function renderEntities(){
     updateBudgetCheck();
     updatestreak();
 }
-
+if (historyFilter){
+    historyFilter.addEventListener("change",function(){
+        renderEntities();
+    });
+}
 var budgetInput = document.getElementById("budget-input");
 var budgetStatus = document.getElementById("budget-status");
 var savedBudget = localStorage.getItem("carbonBudget");

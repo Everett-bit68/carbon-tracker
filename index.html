@@ -88,6 +88,15 @@
         </section>
         <section class="card">
             <h2>Activity History</h2>
+            <div style="margin-bottom:10px;">
+                <label for="history-filter" style="font-size: 14px; padding: 0; margin-bottom: 4px;">Filter by category</label>
+                <select id="history-filter">
+                    <option value="all">All categories</option>
+                    <option value="transport">Transport</option>
+                    <option value="food">Food</option>
+                    <option value="energy">Home energy</option>
+                </select>
+            </div>
             <ul id="activity-list" style="list-style-type:none;padding:0;">
                 <p style="color: grey;">no activities logged yet</p>
             </ul>
