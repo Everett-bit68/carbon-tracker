@@ -38,7 +38,7 @@ var activitylist = document.getElementById("activity-list");
 var todaydisplay = document.querySelector(".summary .card:nth-child(1) .big");
 var totaldisplay = document.querySelector(".summary .card:nth-child(2) .big");
 var clearBtn = document.getElementById("clear-btn");
-var historyFilter = document.getElementById("")
+var historyFilter = document.getElementById("history-filter")
 
 var entries = [];
 
@@ -103,11 +103,11 @@ function renderEntities(){
         updateSummary();
         renderCustomChart();
         updateBudgetCheck();
-        updatestreak();
+        updateStreak();
         return;
     }
     for (var i =0; i<entries.length; i++){
-        var entry =entries[i];
+        var entry = filteredEntries[i].entry;
         var li = document.createElement("li");
         li.style.padding = "8px 0";
         li.style.borderBottom = "1px solid #eee";
